@@ -27,30 +27,34 @@ class ProductController extends Controller
 
     public function  store(Request $request)
     {
+        info($request);
+        info($request);
+info('lkjhsdkfjhlkasjhf');
+
         $this->validate($request, [
             'name' => 'required',
-            'price' => 'required',
+            'price' => 'required|min:1',
             'desc' => 'required',
-            //'image' => 'required'
+            'image' => 'required'
         ]);
 
 // this code for base 64
-//        $image = $request->image;
-//        $path = storage_path("/app/product");
-//        $image = str_replace('data:image/jpeg;base64,', '', $image);
-//        $image = str_replace(' ', '+', $image);
-//        $imageName = md5(rand(11111, 99999)) . '_' . time() . '.png';
-//        $path = $path . '/'  . $imageName;
-//        $input = \File::put($path, base64_decode($image));
+        $image = $request->image;
+        $path = storage_path("app/product");
+        $image = str_replace('data:image/jpeg;base64,', '', $image);
+        $image = str_replace(' ', '+', $image);
+        $imageName = md5(rand(11111, 99999)) . '_' . time() . '.png';
+        $path = $path . '/'  . $imageName;
+        $input = \File::put($path, base64_decode($image));
 
 //
 //
 
         $product = Product::create([
             'name' => $request->name,
-            'price' => $request->price,
+            'price' => 20,
             'desc' => $request->desc,
-            //'image' => $path
+            'image' => $path
 
         ]);
 
