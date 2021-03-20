@@ -53,4 +53,10 @@ class User extends Authenticatable
         'phonenumber' => "integer",
         'adress' => "string",
     ];
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
 }
