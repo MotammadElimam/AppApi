@@ -44,10 +44,13 @@ class ProductController extends Controller
         $imageName = md5(rand(11111, 99999)) . '_' . time() . '.png';
         $path = $path . '/'  . $imageName;
         $input = \File::put($path, base64_decode($image));
+//        $input =$request->file('image')->storeAs('/public', $imageName);
+//        $url = Storage::url($imageName);
+
 
         $product = Product::create([
             'name' => $request->name,
-            'price' => 20,
+            'price' => $request->price,
             'desc' => $request->desc,
             'image' => $path
 
