@@ -38,7 +38,7 @@ class ProductController extends Controller
 
 //        this code for base 64
         $image = $request->image;
-        $path = storage_path("app/product");
+        $path = storage_path("app/public/product");
         $image = str_replace('data:image/jpeg;base64,', '', $image);
         $image = str_replace(' ', '+', $image);
         $imageName = md5(rand(11111, 99999)) . '_' . time() . '.png';
