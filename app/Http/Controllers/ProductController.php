@@ -52,7 +52,7 @@ class ProductController extends Controller
             'name' => $request->name,
             'price' => $request->price,
             'desc' => $request->desc,
-            'image' => $path
+            'image' => $imageName
 
         ]);
 

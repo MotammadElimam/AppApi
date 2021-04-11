@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use Laratrust\Traits\LaratrustUserTrait;
 
 
 class User extends Authenticatable
 {
+    use LaratrustUserTrait;
     use HasApiTokens , HasFactory, Notifiable;
 
 
@@ -24,8 +26,8 @@ class User extends Authenticatable
         'password',
         'first_name',
         'last_name',
-        'phonenumber',
-        'adress',
+        'phone_number',
+        'address',
 
     ];
 

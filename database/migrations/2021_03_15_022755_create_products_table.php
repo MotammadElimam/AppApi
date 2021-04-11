@@ -19,9 +19,10 @@ class CreateProductsTable extends Migration
             $table->double('price')->nullable();
             $table->string('desc')->nullable();
             $table->string('image')->nullable();
-            $table->foreign('user_id')
+            $table->unsignedBigInteger('seller_id');
+            $table->foreign('seller_id')
                 ->references('id')
-                ->on('users');
+                ->on('sellers');
 
             $table->timestamps();
         });

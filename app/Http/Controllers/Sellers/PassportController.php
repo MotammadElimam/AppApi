@@ -1,12 +1,11 @@
 <?php
 
+namespace App\Http\Controllers\Sellers;
 
-namespace App\Http\Controllers;
-
-use App\Models\User;
+use App\Http\Controllers\Controller;
+use App\Models\Seller;
 use Illuminate\Http\Request;
-use App\Models\Role;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class PassportController extends Controller
 {
@@ -33,7 +32,7 @@ class PassportController extends Controller
         $input['password'] = bcrypt($request->password);
         //  return response()->json([$input], 200);
 
-        $user = User::create([
+        $seller = Seller::create([
             'email' =>  $request->email,
             'password' => \Hash::make($request->password),
             'confirm_password' => $request->confirm_password,
@@ -43,12 +42,12 @@ class PassportController extends Controller
             'address' => $request->adress
         ]);
 
-        if ($request->is_seller) {
-            $user->attachRole("seller");
-        }
+//        if($request->is_seller){
+//            $user->attachRole("seller");
+//        }
 
 
-        $token = $user->createToken('MySecret')->accessToken;
+        $token = $seller->createToken('SellerSecret')->accessToken;
 
         return response()->json(['token' => $token], 200);
     }
@@ -66,12 +65,11 @@ class PassportController extends Controller
             'password' => $request->password
         ];
 
-        $user = User::where('email', $request->email)->first();
+       $seller = Seller::where('email', $request->email)->first();
 
 
-
-        if (Hash::check($request->password, $user->getAuthPassword())) {
-            $token = $user->createToken('MySecret')->accessToken;
+        if (Hash::check($request->password, $seller->getAuthPassword())) {
+            $token = $seller->createToken('SellerSecret')->accessToken;
             return response()->json(['token' => $token], 200);
         } else {
             return response()->json(['error' => 'UnAuthorised'], 401);
@@ -85,6 +83,6 @@ class PassportController extends Controller
      */
     public function details()
     {
-        return response()->json(['user' => auth()->user()], 200);
+        return response()->json(['user' => auth()->guard('seller_api')->user()], 200);
     }
 }
