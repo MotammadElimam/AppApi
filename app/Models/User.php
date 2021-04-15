@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
-use Laratrust\Traits\LaratrustUserTrait;
+
 
 
 class User extends Authenticatable
 {
-    use LaratrustUserTrait;
+  
     use HasApiTokens , HasFactory, Notifiable;
 
 
@@ -56,9 +56,5 @@ class User extends Authenticatable
         'adress' => "string",
     ];
 
-    public function products()
-    {
-        return $this->hasMany(Product::class);
-    }
 
 }

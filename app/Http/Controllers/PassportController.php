@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
 
 class PassportController extends Controller
@@ -42,10 +41,6 @@ class PassportController extends Controller
             'phone_number' =>  $request->phonenumber,
             'address' => $request->adress
         ]);
-
-        if ($request->is_seller) {
-            $user->attachRole("seller");
-        }
 
 
         $token = $user->createToken('MySecret')->accessToken;

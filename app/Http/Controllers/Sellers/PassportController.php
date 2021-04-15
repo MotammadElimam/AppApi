@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Sellers;
 use App\Http\Controllers\Controller;
 use App\Models\Seller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class PassportController extends Controller
 {
