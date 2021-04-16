@@ -16,6 +16,7 @@ class CreateOrderStatusTable extends Migration
         Schema::create('order_status', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('order_id');
             $table->string('status');
@@ -23,9 +24,6 @@ class CreateOrderStatusTable extends Migration
         });
     }
 
-
-
-و ال adress   من الموبايل حرسل الproduct id وال Quantity 
 
     /**
      * Reverse the migrations.

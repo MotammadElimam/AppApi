@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\order;
+use App\Models\Order;
 use Illuminate\Http\Request;
-
+use App\Models\Product;
+use App\Models\OrderProduct;
+use App\Models\OrderStatus;
 class OrderController extends Controller
 {
     /**
@@ -27,12 +29,13 @@ class OrderController extends Controller
      */
      public function store(Request $request)
          {
-             \DB::transactionBegin();
+             \DB::beginTransaction();
 
              $order = new Order();
 
-             $order->user_id = auth()->user->id;
+             $order->user_id = auth()->user()->id;
              $order->address= $request->address;
+             $order->payment_type= $request->payment_type;
 
              $order_save = $order->save();
 
@@ -41,9 +44,16 @@ class OrderController extends Controller
                  return response()->json('sorry', 500);
              }
 
+             $order_status = new OrderStatus();
+             $order_status->status = 'pending';
+             $order_status->order_id = $order->id;
+             $order_status->user_id = auth()->user()->id;
+             $order_status_save = $order_status->save();
+
+
              $order_total_price = 0;
 
-             foreach ($request->orderproducts as $key => $user_order_products) {
+             foreach ($request->order_products as $key => $user_order_products) {
                  $product = Product::find($user_order_products['product_id']);
 
                  $order_product = new OrderProduct();
@@ -54,10 +64,11 @@ class OrderController extends Controller
                  $order_product->price = $product->price;
                  $order_product->quantity = $user_order_products['quantity'];
                  $order_product->total_price = $order_product->price * $order_product->quantity;
-
+                 info($order_product->total_price);
                  $order_total_price = $order_total_price + $order_product->total_price;
+                 info($order_total_price);
 
-                 $order_product_save = $order->save();
+                 $order_product_save = $order_product->save();
 
                  if(!$order_product_save){
                      \DB::Rollback();
@@ -65,7 +76,7 @@ class OrderController extends Controller
                  }
              }
 
-             $order->total_price = $order_product_save;
+             $order->total_price = $order_total_price;
              $order_save = $order->save();
 
              if(!$order_save){
@@ -77,6 +88,28 @@ class OrderController extends Controller
 
 
              return response()->json('Ok');
+
+         }
+
+
+         public function changeStatus(Request $request){
+
+           $order = Order::find($request->order_id);
+           $order->status = $request->status;
+           $order_save = $order->save();
+
+
+            if(!$order_save){
+               \DB::Rollback();
+               return response()->json('sorry', 500);
+           }
+
+           $order_status = new OrderStatus();
+           $order_status->status = $request->status;
+           $order_status->order_id = $order->id;
+           $order_status->user_id = auth()->user()->id;
+           $order_status_save = $order_status->save();
+
 
          }
 
