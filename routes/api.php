@@ -12,7 +12,7 @@ Route::post('register', [PassportController::class, 'register']);
 
 Route::middleware('auth:api')->group(function () {
    Route::get('getallproducts', [ProductController::class, 'index']);
-   Route::post('store',  [OrderController::class, 'store']);
+   Route::post('addOrder',  [OrderController::class, 'store']);
 
   // Route::resource('orders', OrderController::class)->except(['create', 'edit', 'update']);
    Route::prefix('orders')->group(function () {
