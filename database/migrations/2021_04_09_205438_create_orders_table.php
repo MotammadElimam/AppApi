@@ -20,6 +20,7 @@ class CreateOrdersTable extends Migration
           $table->string('status')->default('pending');
           $table->timestamps();
           $table->decimal('totalprice',8,2);
+          $table->String('payment_type');
           $table->foreign('user_id')->on('users')->references('id');
 
         });

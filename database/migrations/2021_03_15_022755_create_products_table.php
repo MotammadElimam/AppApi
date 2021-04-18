@@ -20,10 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('desc')->nullable();
             $table->string('image')->nullable();
             $table->unsignedBigInteger('seller_id');
-            $table->foreign('seller_id')
-                ->references('id')
-                ->on('sellers');
-
+            $table->foreign('seller_id')->references('id')->on('sellers');
             $table->timestamps();
         });
     }
