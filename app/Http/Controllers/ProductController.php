@@ -65,18 +65,20 @@ class ProductController extends Controller
     }
 
 
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        $product = auth()->user()->product()->find($id);
+      //  $product = auth()->user()->products()->find($id);
+      //  return $product;
+
 
         if (!$product) {
             return response()->json('sorry', 400);
         }
 
         if ($product->delete()) {
-            return response()->json('done');
+            return response()->json('Product deleted');
         } else {
-            return response()->json('sorry', 500);
+            return response()->json('sorry you didnt delete', 500);
         }
     }
 }

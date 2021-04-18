@@ -12,7 +12,7 @@ Route::post('register', [PassportController::class, 'register']);
 Route::middleware('auth:seller_api')->group(function () {
 
     Route::post('addproduct', [ProductController::class, 'store']);
-    Route::post('deleteproduct/{id}', [ProductController::class, 'destroy']);
+    Route::delete('deleteproduct/{product}', [ProductController::class, 'destroy']);
     Route::get('getallproducts', [ProductController::class, 'index']);
     Route::post('changeOrderstatus', [OrderController::class, 'changeStatus']);
 
