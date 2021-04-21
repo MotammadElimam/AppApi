@@ -7,13 +7,17 @@ use App\Http\Controllers\OrderController;
 
 Route::get('login', [PassportController::class, 'login']);
 Route::post('register', [PassportController::class, 'register']);
+Route::get('showAllProducts', [ProductController::class, 'showAllProducts']);
+Route::get('ShowCustomProduct/{product}', [ProductController::class, 'ShowCustomProduct']);
 //Route::get('getallproducts', [ProductController::class, 'showAllProducts']);
 
 Route::middleware('auth:seller_api')->group(function () {
 
     Route::post('addproduct', [ProductController::class, 'store']);
     Route::delete('deleteproduct/{product}', [ProductController::class, 'destroy']);
-    Route::get('getallSellerproducts', [ProductController::class, 'index']);
+    Route::put('updateproduct/{product}', [ProductController::class, 'update']);
+
+    Route::get('getallSellerproducts', [ProductController::class, 'ShowSellerProducts']);
 
     Route::post('changeOrderstatus', [OrderController::class, 'changeStatus']);
 
