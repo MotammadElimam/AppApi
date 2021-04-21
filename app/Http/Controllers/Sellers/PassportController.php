@@ -38,8 +38,8 @@ class PassportController extends Controller
             'confirm_password' => $request->confirm_password,
             'first_name' =>  $request->first_name,
             'last_name' =>  $request->last_name,
-            'phone_number' =>  $request->phonenumber,
-            'address' => $request->adress
+            'phone_number' =>  $request->phone_number,
+            'address' => $request->address
         ]);
 
 //        if($request->is_seller){

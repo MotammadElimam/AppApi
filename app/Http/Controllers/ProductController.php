@@ -59,25 +59,11 @@ class ProductController extends Controller
             'image' => 'required'
         ]);
 
-
-
-        //        this code for base 64
-                $image = $request->image;
-                $path = storage_path("app/public/product");
-                $image = str_replace('data:image/jpeg;base64,', '', $image);
-                $image = str_replace(' ', '+', $image);
-                $imageName = md5(rand(11111, 99999)) . '_' . time() . '.png';
-                $path = $path . '/'  . $imageName;
-                $input = \File::put($path, base64_decode($image));
-        //        $input =$request->file('image')->storeAs('/public', $imageName);
-        //        $url = Storage::url($imageName);
-
-
         $product = Product::create([
             'name' => $request->name,
             'price' => $request->price,
             'desc' => $request->desc,
-            'image' => $imageName
+            'image' => $request->image
 
         ]);
 
