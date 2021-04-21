@@ -13,8 +13,17 @@ class ProductController extends Controller
     {
         $products = auth()->user()->products;
 
-        return response()->json($products);
+      return response()->json($products);
+      //return $products;
     }
+
+    // public function showAllProducts()
+    // {
+    //    $products = products()->get();
+    //
+    //
+    //     return response()->json(  $products );
+    // }
 
     public function show($id)
     {
