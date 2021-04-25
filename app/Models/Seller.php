@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
+use App\models\Orders;
 
 class Seller extends Authenticatable
 {
@@ -25,6 +26,11 @@ class Seller extends Authenticatable
     public function products()
     {
         return $this->hasMany(Product::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(OrderProduct::class);
     }
 
 

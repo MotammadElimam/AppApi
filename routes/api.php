@@ -15,6 +15,7 @@ Route::post('register', [PassportController::class, 'register']);
 Route::middleware('auth:api')->group(function () {
 
 Route::post('addOrder',  [OrderController::class, 'store']);
+Route::get('getallBuyerorders', [ProductController::class, 'ShowAllBuyerOrders']);
 
 
 Route::prefix('orders')->group(function () {

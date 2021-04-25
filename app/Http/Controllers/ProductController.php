@@ -5,13 +5,37 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\models\Seller;
+use App\Models\Order;
 
 
 class ProductController extends Controller
 {
 
 
+  public function ShowSellerOrders()
+  {
+      $orders = auth()->user()->orders;
 
+    return response()->json($orders);
+  }
+
+
+
+  public function ShowAllBuyerOrders()
+  {
+      $orders = auth()->user()->orders;
+
+      return response()->json($orders);
+  }
+
+
+
+
+
+  public function showAllProducts()
+  {
+    return Product::all();
+  }
 
 
 
@@ -24,10 +48,7 @@ class ProductController extends Controller
       return response()->json($products);
     }
 
-    public function showAllProducts()
-    {
-      return Product::all();
-    }
+
 
 
     public function ShowCustomProduct(Product $product)

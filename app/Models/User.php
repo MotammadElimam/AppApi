@@ -12,7 +12,7 @@ use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-  
+
     use HasApiTokens , HasFactory, Notifiable;
 
 
@@ -55,6 +55,12 @@ class User extends Authenticatable
         'phonenumber' => "integer",
         'adress' => "string",
     ];
+
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 
 
 }
