@@ -23,5 +23,10 @@ class Product extends Model
         $input = \File::put($path, base64_decode($image));
         $this->attributes['image'] = $imageName;
     }
-}
 
+
+    public function Ratings()
+    {
+        return $this->hasmany(Rating::class);
+    }
+}

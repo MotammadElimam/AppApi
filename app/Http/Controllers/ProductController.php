@@ -53,21 +53,12 @@ class ProductController extends Controller
 
     public function ShowCustomProduct(Product $product)
     {
-      //  $product = auth()->user()->products()->find($id);
-      //  return $product;
-
 
         if (!$product) {
             return response()->json('sorry', 400);
         }
 
-
           return $product;
-        // if ($product->delete()) {
-        //     return response()->json('Product deleted');
-        // } else {
-        //     return response()->json('sorry you didnt delete', 500);
-        // }
     }
 
 
