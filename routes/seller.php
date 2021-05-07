@@ -9,6 +9,8 @@ Route::get('login', [PassportController::class, 'login']);
 Route::post('register', [PassportController::class, 'register']);
 Route::get('showAllProducts', [ProductController::class, 'showAllProducts']);
 Route::get('ShowCustomProduct/{product}', [ProductController::class, 'ShowCustomProduct']);
+Route::get('ShowAllOrders', [OrderController::class, 'showAllOrders']);
+
 //Route::get('getallproducts', [ProductController::class, 'showAllProducts']);
 
 Route::middleware('auth:seller_api')->group(function () {

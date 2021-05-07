@@ -113,6 +113,12 @@ class OrderController extends Controller
 
          }
 
+
+
+         public function showAllOrders()
+         {
+           return Order::all();
+         }
     /**
      * Display the specified resource.
      *
