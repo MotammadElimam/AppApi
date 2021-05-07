@@ -20,7 +20,7 @@ Route::middleware('auth:seller_api')->group(function () {
     Route::put('updateproduct/{product}', [ProductController::class, 'update']);
 
     Route::get('getallSellerproducts', [ProductController::class, 'ShowSellerProducts']);
-    Route::get('getallSellerorders', [ProductController::class, 'ShowSellerOrders']);
+    Route::get('ShowSelleritemsOfOrders', [OrderController::class, 'ShowSelleritemsOfOrders']);
 
     Route::post('changeOrderstatus', [OrderController::class, 'changeStatus']);
 

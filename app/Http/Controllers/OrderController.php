@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\OrderProduct;
 use App\Models\OrderStatus;
+use App\Http\Resources\OrderResource;
+use App\Http\Resources\OrderProductsResource;
 class OrderController extends Controller
 {
     /**
@@ -117,7 +119,23 @@ class OrderController extends Controller
 
          public function showAllOrders()
          {
-           return Order::all();
+           return OrderResource::collection(Order::all());
+         }
+
+
+
+
+         public function ShowSelleritemsOfOrders(Request $request)
+         {
+           info($request);
+           info(auth()->user()->id);
+            $order = Order::where('id',$request->id)
+              ->where('user_id',auth()->user()->id)
+              ->firstOrFail();
+
+            $order_product = $order->product()->get();
+
+             return OrderProductsResource::collection($order_product);
          }
     /**
      * Display the specified resource.

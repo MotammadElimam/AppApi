@@ -12,14 +12,6 @@ class ProductController extends Controller
 {
 
 
-  public function ShowSellerOrders()
-  {
-      $orders = auth()->user()->orders;
-
-    return response()->json($orders);
-  }
-
-
 
   public function ShowAllBuyerOrders()
   {
@@ -45,7 +37,7 @@ class ProductController extends Controller
     {
         $products = auth()->user()->products;
 
-      return response()->json($products);
+        return response()->json($products);
     }
 
 

@@ -9,13 +9,20 @@ class Order extends Model
 {
     use HasFactory;
 
-    public function productItem()
+    public function orderProduct()
     {
-        return $this->hasMany(OrderItem::class);
+        return $this->hasMany(OrderProduct::class);
     }
 
     public function product()
     {
-        return $this->hasManyThrough(Product::class, OrderProduct::class);
+        return $this->hasManyThrough(
+          Product::class,
+          OrderProduct::class,
+          'order_id',
+          'id',
+          'id',
+          'product_id'
+        );
     }
 }
