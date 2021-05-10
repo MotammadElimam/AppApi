@@ -1,0 +1,15 @@
+[2021-05-10 14:02:40] local.ERROR: The "--بخقؤث" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--بخقؤث\" option does not exist. at C:\\Users\\Motamed\\Desktop\\GraduationProject\\AppApi\\vendor\\symfony\\console\\Input\\ArgvInput.php:212)
+[stacktrace]
+#0 C:\\Users\\Motamed\\Desktop\\GraduationProject\\AppApi\\vendor\\symfony\\console\\Input\\ArgvInput.php(142): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption('\\xD8\\xA8\\xD8\\xAE\\xD9\\x82\\xD8\\xA4\\xD8\\xAB', NULL)
+#1 C:\\Users\\Motamed\\Desktop\\GraduationProject\\AppApi\\vendor\\symfony\\console\\Input\\ArgvInput.php(76): Symfony\\Component\\Console\\Input\\ArgvInput->parseLongOption('--\\xD8\\xA8\\xD8\\xAE\\xD9\\x82\\xD8\\xA4\\xD8\\xAB')
+#2 C:\\Users\\Motamed\\Desktop\\GraduationProject\\AppApi\\vendor\\symfony\\console\\Input\\Input.php(55): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#3 C:\\Users\\Motamed\\Desktop\\GraduationProject\\AppApi\\vendor\\symfony\\console\\Command\\Command.php(215): Symfony\\Component\\Console\\Input\\Input->bind(Object(Symfony\\Component\\Console\\Input\\InputDefinition))
+#4 C:\\Users\\Motamed\\Desktop\\GraduationProject\\AppApi\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(121): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#5 C:\\Users\\Motamed\\Desktop\\GraduationProject\\AppApi\\vendor\\symfony\\console\\Application.php(971): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#6 C:\\Users\\Motamed\\Desktop\\GraduationProject\\AppApi\\vendor\\symfony\\console\\Application.php(290): Symfony\\Component\\Console\\Application->doRunCommand(Object(Laravel\\Passport\\Console\\KeysCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#7 C:\\Users\\Motamed\\Desktop\\GraduationProject\\AppApi\\vendor\\symfony\\console\\Application.php(166): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#8 C:\\Users\\Motamed\\Desktop\\GraduationProject\\AppApi\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php(92): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#9 C:\\Users\\Motamed\\Desktop\\GraduationProject\\AppApi\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(129): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#10 C:\\Users\\Motamed\\Desktop\\GraduationProject\\AppApi\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#11 {main}
+"} 
