@@ -180,21 +180,21 @@ class OrderController extends Controller
 
 
 
-         public function ShowSelleritemsOfOrder(Request $request)
-         {
-           info($request);
-           info(auth()->user()->id);
-            $order = OrderProduct::where('id',$request->id)
-              ->whereHas('product',function($query){
-                $query->where('seller_id',auth()->user()->id);
-              })
-              ->where('user_id',auth()->user()->id)
-              ->firstOrFail();
-
-            $order_product = $order->product()->get();
-
-             return OrderProductsResource::collection($order_product);
-         }
+         // public function ShowSellerOrders(Request $request)
+         // {
+         //   info($request);
+         //   info(auth()->user()->id);
+         //    $order = OrderProduct::where('id',$request->id)
+         //      ->whereHas('product',function($query){
+         //        $query->where('seller_id',auth()->user()->id);
+         //      })
+         //      ->where('user_id',auth()->user()->id)
+         //      ->firstOrFail();
+         //
+         //    $order_product = $order->product()->get();
+         //
+         //     return OrderProductsResource::collection($order_product);
+         // }
 
 
          // public function ShowSellerOrders()
