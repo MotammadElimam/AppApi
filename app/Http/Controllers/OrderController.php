@@ -55,8 +55,48 @@ class OrderController extends Controller
 
              $order_total_price = 0;
 
-             foreach ($request->order_products as $key => $user_order_products) {
-                 $product = Product::find($user_order_products['product_id']);
+
+
+            // var_dump($request);die();
+
+            if(gettype($request->order_products) == "string"){
+              $request->order_products = json_decode($request->order_products);
+            }
+            //
+            // foreach (  $request->order_products  as $value) {
+            //   // code...
+            //     $request->order_products[] = (array) $value;
+            // }
+
+             foreach ($request->order_products as $user_order_products) {
+
+                $user_order_products_type = gettype($user_order_products);
+
+                $product_id = 0;
+                switch ($user_order_products_type) {
+                  case 'object':
+
+
+                    $product_id =  $user_order_products->product_id;
+                    break;
+
+                    case 'array':
+                    $product_id =  $user_order_products['product_id'];
+                      break;
+                  default:
+                  return response()->json(gettype($user_order_products));
+                    break;
+                }
+
+
+
+
+
+
+
+               // return response()->json($product_id);
+
+                 $product = Product::find($product_id);
 
                  $order_product = new OrderProduct();
 
@@ -125,7 +165,7 @@ class OrderController extends Controller
 
 
 
-         public function ShowSelleritemsOfOrders(Request $request)
+         public function ShowBuyeritemsOfOrder(Request $request)
          {
            info($request);
            info(auth()->user()->id);
@@ -137,6 +177,32 @@ class OrderController extends Controller
 
              return OrderProductsResource::collection($order_product);
          }
+
+
+
+         public function ShowSelleritemsOfOrder(Request $request)
+         {
+           info($request);
+           info(auth()->user()->id);
+            $order = OrderProduct::where('id',$request->id)
+              ->whereHas('product',function($query){
+                $query->where('seller_id',auth()->user()->id);
+              })
+              ->where('user_id',auth()->user()->id)
+              ->firstOrFail();
+
+            $order_product = $order->product()->get();
+
+             return OrderProductsResource::collection($order_product);
+         }
+
+
+         // public function ShowSellerOrders()
+         // {
+         //     $orders = auth()->user()->orders;
+         //
+         //     return OrderResource::collection(Order::all());
+         // }
     /**
      * Display the specified resource.
      *

@@ -17,14 +17,13 @@ class OrderProductsResource extends JsonResource
 
         return [
           'id' => $this->id ,
-        //  'product_count' => $this->product()->get(),
-                    "name" => $this->name,
-                    "price" => $this->price,
-                    "desc" => $this->desc,
-                    "image" => $this->image,
-                    "seller_id" => $this->seller->id,
-                    "created_at" => $this->created_at,
-                    "updated_at" =>$this->updated_at,
+          "name" => $this->name,
+          "price" => $this->price,
+          "desc" => $this->desc,
+          "image" => $this->image,
+          "seller_id" => $this->seller->id,
+          "created_at" => $this->created_at,
+          "updated_at" =>$this->updated_at,
 
         ];
 

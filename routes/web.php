@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route:; get('passport-client', function () {
+Route:: get('passport-client', function () {
     Artisan::call('passport:client --personal');
 
     return Artisan::output();
