@@ -19,7 +19,9 @@ Route::get('TopProductsRating', [RatingController::class, 'TopProductsRatings'])
 Route::middleware('auth:api')->group(function () {
 
 Route::post('addOrder',  [OrderController::class, 'store']);
-Route::get('getallBuyerorders', [ProductController::class, 'ShowAllBuyerOrders']);
+Route::get('ShowBuyerOrders', [ProductController::class, 'ShowBuyerOrders']);
+
+  Route::get('ShowBuyeritemsOfOrder', [OrderController::class, 'ShowBuyeritemsOfOrder']);
 
 
 Route::post('rating/{product}', [RatingController::class, 'ReateProduct']);

@@ -9,6 +9,7 @@ use App\Models\OrderProduct;
 use App\Models\OrderStatus;
 use App\Http\Resources\OrderResource;
 use App\Http\Resources\OrderProductsResource;
+use App\Http\Resources\OrderSummaryResource;
 class OrderController extends Controller
 {
     /**
@@ -197,12 +198,12 @@ class OrderController extends Controller
          // }
 
 
-         // public function ShowSellerOrders()
-         // {
-         //     $orders = auth()->user()->orders;
-         //
-         //     return OrderResource::collection(Order::all());
-         // }
+         public function ShowBuyerOrders()
+         {
+             $orders = auth()->user()->orders;
+
+             return OrderSummaryResource::collection($orders);
+         }
     /**
      * Display the specified resource.
      *

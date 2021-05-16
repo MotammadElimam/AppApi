@@ -12,18 +12,6 @@ class ProductController extends Controller
 {
 
 
-
-  public function ShowAllBuyerOrders()
-  {
-      $orders = auth()->user()->orders;
-
-      return response()->json($orders);
-  }
-
-
-
-
-
   public function showAllProducts()
   {
     return Product::all();
@@ -81,11 +69,10 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
-      //  $product = auth()->user()->products()->find($id);
 
-        if (!$product) {
-            return response()->json('sorry not found', 400);
-        }
+      if(auth()->id() != $product->seller_id){
+        return response()->json('access denied', 403);
+      }
 
         $updated = $product->fill($request->all())->save();
 
@@ -116,10 +103,10 @@ class ProductController extends Controller
       //  return $product;
 
 
-        if (!$product) {
-            return response()->json('sorry', 400);
-        }
 
+        if(auth()->id() != $product->seller_id){
+          return response()->json('access denied', 403);
+        }
         if ($product->delete()) {
             return response()->json('Product deleted');
         } else {

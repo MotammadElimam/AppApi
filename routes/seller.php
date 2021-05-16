@@ -23,10 +23,13 @@ Route::middleware('auth:seller_api')->group(function () {
     Route::put('updateproduct/{product}', [ProductController::class, 'update']);
     Route::delete('deleteproduct/{product}', [ProductController::class, 'destroy']);
 
-    Route::get('getallSellerproducts', [ProductController::class, 'ShowSellerProducts']);
+    Route::get('ShowSellerProducts', [ProductController::class, 'ShowSellerProducts']);
+
+  //  Route::get('ShowSellerProducts', [ProductController::class, 'ShowSellerProducts']);
 
 
-    Route::get('ShowBuyeritemsOfOrder', [OrderController::class, 'ShowBuyeritemsOfOrder']);
+
+
     Route::post('changeOrderstatus', [OrderController::class, 'changeStatus']);
 
 
