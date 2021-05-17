@@ -20,12 +20,9 @@ Route::middleware('auth:api')->group(function () {
 
 Route::post('addOrder',  [OrderController::class, 'store']);
 Route::get('ShowBuyerOrders', [ProductController::class, 'ShowBuyerOrders']);
-
-  Route::get('ShowBuyeritemsOfOrder', [OrderController::class, 'ShowBuyeritemsOfOrder']);
-
+Route::get('ShowBuyeritemsOfOrder', [OrderController::class, 'ShowBuyeritemsOfOrder']);
 
 Route::post('rating/{product}', [RatingController::class, 'ReateProduct']);
-
 
 Route::prefix('orders')->group(function () {
 

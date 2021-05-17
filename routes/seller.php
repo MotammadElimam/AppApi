@@ -25,17 +25,6 @@ Route::middleware('auth:seller_api')->group(function () {
 
     Route::get('ShowSellerProducts', [ProductController::class, 'ShowSellerProducts']);
 
-  //  Route::get('ShowSellerProducts', [ProductController::class, 'ShowSellerProducts']);
-
-
-
-
     Route::post('changeOrderstatus', [OrderController::class, 'changeStatus']);
-
-
-
-
-
-
 
 });

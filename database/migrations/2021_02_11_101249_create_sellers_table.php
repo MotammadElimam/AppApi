@@ -16,10 +16,10 @@ class CreateSellersTable extends Migration
         Schema::create('sellers', function (Blueprint $table) {
             $table->id();
             $table->string('email')->unique();
-            $table->string('password')->nullable();
-            $table->string('confirm_password')->nullable();
-            $table->string('first_name')->nullable();
-            $table->string('last_name')->nullable();
+            $table->string('password');
+            $table->string('confirm_password');
+            $table->string('first_name');
+            $table->string('last_name');
             $table->string('phone_number')->unique();
             $table->string('Address');
             $table->timestamp('email_verified_at')->nullable();

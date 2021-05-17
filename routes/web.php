@@ -19,7 +19,9 @@ Route::get('/', function () {
 });
 
 Route:: get('passport-client', function () {
+    if(! defined('STDIN')) define('STDIN', fopen("php://stdin","r"));
+    Artisan::call('passport:install');
     Artisan::call('passport:client --personal');
 
-    return Artisan::output();
+   return Artisan::output();
 });
