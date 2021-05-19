@@ -5,7 +5,7 @@ use App\Http\Controllers\Sellers\PassportController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
 
-Route::get('login', [PassportController::class, 'login']);
+Route::post('login', [PassportController::class, 'login']);
 Route::post('register', [PassportController::class, 'register']);
 
 
@@ -25,6 +25,6 @@ Route::middleware('auth:seller_api')->group(function () {
 
     Route::get('ShowSellerProducts', [ProductController::class, 'ShowSellerProducts']);
 
-    Route::post('changeOrderstatus', [OrderController::class, 'changeStatus']);
+    //Route::post('changeOrderstatus', [OrderController::class, 'changeStatus']);
 
 });

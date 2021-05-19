@@ -8,7 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RatingController;
 
 
-Route::get('login', [PassportController::class, 'login']);
+Route::post('login', [PassportController::class, 'login']);
 Route::post('register', [PassportController::class, 'register']);
 
 
