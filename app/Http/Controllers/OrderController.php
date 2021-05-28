@@ -47,11 +47,11 @@ class OrderController extends Controller
       return response()->json('sorry', 500);
     }
 
-    //  $order_status = new OrderStatus();
-    //  $order_status->status = 'pending';
-    //  $order_status->order_id = $order->id;
-    //  $order_status->user_id = auth()->user()->id;
-    //  $order_status_save = $order_status->save();
+     $order_status = new OrderStatus();
+     $order_status->status = 'pending';
+     $order_status->order_id = $order->id;
+     $order_status->user_id = auth()->user()->id;
+     $order_status_save = $order_status->save();
 
 
     $order_total_price = 0;
@@ -59,13 +59,9 @@ class OrderController extends Controller
 
 
     if (gettype($request->order_products) == "string") {
-      $request->order_products = json_decode($request->order_products);
+      $request->order_products = json_decode($request->order_product,true);
     }
-    //
-    // foreach (  $request->order_products  as $value) {
-    //   // code...
-    //     $request->order_products[] = (array) $value;
-    // }
+
 
     foreach ($request->order_products as $user_order_products) {
 
