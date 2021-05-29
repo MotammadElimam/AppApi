@@ -15,7 +15,7 @@ class RatingController extends Controller
       }
 
       if($request->rate < 1 || $request->rate > 5){
-        return "yyy";
+        return "its bigger than 5 or less than 1 ";
       }
 
        $rating = new Rating(
