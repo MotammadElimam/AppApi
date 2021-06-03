@@ -24,6 +24,8 @@ Route::middleware('auth:seller_api')->group(function () {
     Route::delete('deleteproduct/{product}', [ProductController::class, 'destroy']);
 
     Route::get('ShowSellerProducts', [ProductController::class, 'ShowSellerProducts']);
+    
+    Route::get('ShowSellerOrders', [OrderController::class, 'ShowSellerOrders']);
 
     //Route::post('changeOrderstatus', [OrderController::class, 'changeStatus']);
 

@@ -17,10 +17,10 @@ class CreateOrdersTable extends Migration
           $table->id();
           $table->unsignedBigInteger('user_id');
           $table->text('address');
-          $table->string('status')->default('pending');
+          $table->string('status')->default('ACCCEPTED');
           $table->decimal('total_price',8,2)->nullable();
           $table->String('payment_type');
-          $table->foreign('user_id')->on('users')->references('id');
+          $table->foreign('user_id')->on('users')->references('id')->onDelete('cascade');
           $table->timestamps();
         });
     }

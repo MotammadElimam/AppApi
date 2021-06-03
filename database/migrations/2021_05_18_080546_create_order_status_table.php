@@ -20,6 +20,7 @@ class CreateOrderStatusTable extends Migration
             $table->unsignedBigInteger('order_id');
             $table->string('status');
             $table->foreign('user_id')->on('users')->references('id');
+            $table->foreign('order_id')->on('orders')->references('id');
         });
     }
 

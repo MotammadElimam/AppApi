@@ -15,13 +15,14 @@ class RatingController extends Controller
       }
 
       if($request->rate < 1 || $request->rate > 5){
-        return "its bigger than 5 or less than 1 ";
+       return "its bigger than 5 or less than 1 ";
       }
 
        $rating = new Rating(
          [
            'rate' =>  $request->rate,
-           'product_id' => $product->id
+           'product_id' => $product->id,
+           'order_id' => $request->order_id,
          ]
        );
 

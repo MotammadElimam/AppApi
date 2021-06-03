@@ -22,7 +22,8 @@ class CreateOrederProductsTable extends Migration
             $table->decimal('price',8,2);
             $table->decimal('total_price',8,2);
             $table->foreign('seller_id')->on('sellers')->references('id');
-            $table->foreign('order_id')->on('orders')->references('id');
+            $table->foreign('order_id')->on('orders')->references('id')->onDelete('cascade');
+            $table->foreign('product_id')->on('products')->references('id')->onDelete('cascade');
             $table->timestamps();
 
         });

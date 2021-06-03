@@ -10,4 +10,7 @@ class OrderStatus extends Model
     use HasFactory;
 
     protected $table = "order_status";
+    
+    const ACCEPTED = 'ACCEPTED';
+    const CANCELED = 'CANCELED';
 }

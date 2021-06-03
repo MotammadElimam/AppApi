@@ -13,6 +13,7 @@ class Rating extends Model
     protected $fillable = [
         'product_id',
         'rate',
+        'order_id'
 
 
     ];

@@ -13,9 +13,10 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        \Laravel\Passport\Console\InstallCommand::class,
-        \Laravel\Passport\Console\KeysCommand::class,
-        \Laravel\Passport\Console\ClientCommand::class,
+    \Laravel\Passport\Console\InstallCommand::class,
+    \Laravel\Passport\Console\KeysCommand::class,
+    \Laravel\Passport\Console\ClientCommand::class,
+
     ];
 
     /**
