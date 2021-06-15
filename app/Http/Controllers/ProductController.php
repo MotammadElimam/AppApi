@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
-use App\models\Seller;
-use App\Models\Order;
+
 
 
 class ProductController extends Controller

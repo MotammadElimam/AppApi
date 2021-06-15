@@ -65,7 +65,7 @@ class PassportController extends Controller
 
 
 
-        if (Hash::check($request->password, $user->getAuthPassword())) {
+        if ($user &&Hash::check($request->password, $user->getAuthPassword())) {
             $token = $user->createToken('MySecret')->accessToken;
             return response()->json(['token' => $token], 200);
         } else {

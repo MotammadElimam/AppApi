@@ -22,8 +22,8 @@ class OrderProductsResource extends JsonResource
           "desc" => $this->desc,
           "image" => $this->image,
           "seller_id" => $this->seller->id,
-          "created_at" => $this->created_at,
-          "updated_at" =>$this->updated_at,
+          // "created_at" => $this->created_at,
+          // "updated_at" =>$this->updated_at,
 
         ];
 

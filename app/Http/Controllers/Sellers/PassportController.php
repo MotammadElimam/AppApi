@@ -68,7 +68,7 @@ class PassportController extends Controller
        $seller = Seller::where('email', $request->email)->first();
 
 
-        if (Hash::check($request->password, $seller->getAuthPassword())) {
+        if ($seller &&Hash::check($request->password, $seller->getAuthPassword())) {
             $token = $seller->createToken('SellerSecret')->accessToken;
             return response()->json(['token' => $token], 200);
         } else {

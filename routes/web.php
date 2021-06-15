@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('testrate', function () {
+    $product = App\Models\Product::whereHas('ratings')->with('avgRating');
+
+    return  $product->get();
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
