@@ -22,6 +22,7 @@ class CreateSellersTable extends Migration
             $table->string('last_name');
             $table->string('phone_number')->unique();
             $table->string('Address');
+            $table->double('balance')->default(0);
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

@@ -10,6 +10,8 @@ use App\Models\OrderStatus;
 use App\Http\Resources\OrderResource;
 use App\Http\Resources\OrderProductsResource;
 use App\Http\Resources\OrderSummaryResource;
+use App\Models\WalletTransaction;
+use App\Models\Seller;
 
 class OrderController extends Controller
 {
@@ -63,11 +65,7 @@ class OrderController extends Controller
     if (gettype($request->order_products) == "string") {
       $request->order_products = json_decode($request->order_products, true);
     }
-    //
-    // foreach (  $request->order_products  as $value) {
-    //   // code...
-    //     $request->order_products[] = (array) $value;
-    // }
+    
 
     foreach ($request->order_products as $user_order_products) {
 
@@ -113,6 +111,18 @@ class OrderController extends Controller
 
       $order_product_save = $order_product->save();
 
+      $wallet_transaction = new WalletTransaction();
+
+      $wallet_transaction->order_id = $order->id;
+      $wallet_transaction->seller_id = $product->seller_id;
+      $wallet_transaction->price = $order_product->total_price;
+      $wallet_transaction->type = "DEPOSIT";
+
+      $wallet_transaction->save();
+      $seller = Seller::find($product->seller_id);
+      $seller->increment('balance',$wallet_transaction->price);
+
+
       if (!$order_product_save) {
         \DB::Rollback();
         return response()->json('sorry', 500);
@@ -120,6 +130,19 @@ class OrderController extends Controller
     }
 
     $order->total_price = $order_total_price;
+
+    $wallet_transaction = new WalletTransaction();
+
+    $wallet_transaction->order_id = $order->id;
+    $wallet_transaction->user_id = auth()->user()->id;
+    //$wallet_transaction->seller_id = $product->seller_id;
+    $wallet_transaction->price = $order_total_price;
+    $wallet_transaction->type = "WITHDRAW";
+
+    $wallet_transaction->save();
+
+    auth()->user()->decrement('balance',$wallet_transaction->price);
+
     $order_save = $order->save();
 
     if (!$order_save) {
